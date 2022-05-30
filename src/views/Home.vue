@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import admin from "../assets/admin.json";
 export default {
   data() {
     return {
@@ -49,7 +50,9 @@ export default {
         createTime: "2021-06-20 12:00:37",
         updateTime: "2021-06-20 12:00:37",
         isDelete: null
-      }
+      },
+      users: [],
+      page: 1
     };
   }
 };
