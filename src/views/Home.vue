@@ -9,7 +9,11 @@
       </v-row>
       <v-row>
         <v-col md="4" cols="12" v-for="user in currentUsers" :key="user.UID">
-          <v-card height="150px" class="d-flex flex-column px-5 py-3 rounded-lg">
+          <v-card
+            height="150px"
+            class="d-flex flex-column px-5 py-3 rounded-lg"
+            @click="triggerPortalCard(user)"
+          >
             <div class="d-flex align-center flex-grow-0">
               <h3 class="primary--text">
                 <strong>{{user.name}}</strong>
@@ -40,11 +44,11 @@
             <v-row no-gutters>
               <v-col cols="12">
                 <h3 class="primary--text">
-                  <strong>王小明</strong>
+                  <strong>{{currentUser.name}}</strong>
                 </h3>
               </v-col>
               <v-col cols="12">
-                <p class="gray--text">2021062011553350</p>
+                <p class="gray--text">{{currentUser.UID}}</p>
               </v-col>
             </v-row>
           </div>
@@ -59,7 +63,7 @@
                 <h5>性別</h5>
               </v-col>
               <v-col cols="9">
-                <h5>男</h5>
+                <h5>{{handleGender(currentUser.gender)}}</h5>
               </v-col>
             </v-row>
             <v-row class="mb-2" no-gutters>
@@ -67,7 +71,7 @@
                 <h5>行動電話</h5>
               </v-col>
               <v-col cols="9">
-                <h5>0987654321</h5>
+                <h5>{{currentUser.phone}}</h5>
               </v-col>
             </v-row>
             <v-row class="mb-2" no-gutters>
@@ -75,7 +79,7 @@
                 <h5>電子信箱</h5>
               </v-col>
               <v-col cols="9">
-                <h5>Takming001@takming.edu.tw</h5>
+                <h5>{{currentUser.email}}</h5>
               </v-col>
             </v-row>
             <v-row class="mb-1" no-gutters>
@@ -83,14 +87,14 @@
                 <h5>通訊地址</h5>
               </v-col>
               <v-col cols="9" class="d-flex">
-                <h5 class="mr-1">114</h5>
-                <h5>台北市內湖區環山路一段56號</h5>
+                <h5 class="mr-1">{{currentUser.zip}}</h5>
+                <h5>{{currentUser.address}}</h5>
               </v-col>
             </v-row>
             <v-row no-gutters>
               <v-col cols="12" class="gray--text">
                 <small class="mr-3">加入時間</small>
-                <small>2021-06-20 11:49:17</small>
+                <small>{{currentUser.createTime}}</small>
               </v-col>
             </v-row>
           </div>
@@ -98,7 +102,7 @@
             <v-row no-gutters>
               <v-col cols="12" class="gray--text">
                 <small class="mr-3">最後更新時間</small>
-                <small>2021-06-20 11:49:17</small>
+                <small>{{currentUser.updateTime}}</small>
               </v-col>
             </v-row>
           </div>
@@ -115,7 +119,8 @@ export default {
     return {
       users: [],
       page: 1,
-      dialog: false
+      dialog: false,
+      currentUser: {}
     };
   },
   created() {
@@ -139,6 +144,10 @@ export default {
       if (type === "M") return "男";
       if (type === "W") return "女";
       return "其他";
+    },
+    triggerPortalCard(user) {
+      Object.assign(this.currentUser, user);
+      this.dialog = true;
     }
   }
 };
