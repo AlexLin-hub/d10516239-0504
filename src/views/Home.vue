@@ -12,7 +12,7 @@
             <h3 class="primary--text">
               <strong>{{user.name}}</strong>
             </h3>
-            <h4 class="gray--text ml-auto">{{user.gender}}</h4>
+            <h4 class="gray--text ml-auto">{{handleGender(user.gender)}}</h4>
           </div>
           <div class="flex-grow-0">
             <span class="gray--text">{{user.UID}}</span>
@@ -57,6 +57,11 @@ export default {
   methods: {
     getUsers() {
       this.users = admin.data.user;
+    },
+    handleGender(type) {
+      if (type === "M") return "男";
+      if (type === "W") return "女";
+      return "其他";
     }
   }
 };
