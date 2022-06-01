@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app">
+  <v-app>
     <v-main class="background">
       <router-view />
     </v-main>
@@ -12,7 +12,7 @@ export default {
 
   data: () => ({
     //
-  }),
+  })
 };
 </script>
 
