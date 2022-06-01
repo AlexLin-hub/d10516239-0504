@@ -7,7 +7,7 @@
     </v-row>
 
     <v-row>
-      <v-col md="4" cols="12">
+      <v-col md="4" cols="12" v-for="i in 9" :key="i">
         <v-card class="d-flex flex-column px-5 py-3 rounded-lg" height="150px">
           <div class="d-flex align-center flex-grow-0">
             <h3 class="primary--text">
