@@ -155,18 +155,22 @@ export default {
     },
     // 透過非同步async/await等待API回傳
     async connectAPI() {
-      const res = await axios.get(
-        "https://api-takming.herokuapp.com/api/v1/connect",
-        {
-          headers: {
-            SID: "D10516239",
-            CID: "UXpJd01qSXdOVEk1TURFPQ==",
-          },
-        }
-      );
-      console.log({ res }); // 接收回傳資料
-      const { data } = res;
-      console.log({ data }); // response資料會在res.data中
+      try {
+        const res = await axios.get(
+          "https://api-takming.herokuapp.com/api/v1/connect",
+          {
+            headers: {
+              SID: "D10516239",
+              CID: "UXpJd01qSXdOVEk1TURFPQ==",
+            },
+          }
+        );
+        console.log({ res }); // 接收回傳資料
+        const { data } = res;
+        console.log({ data }); // response資料會在res.data中
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
