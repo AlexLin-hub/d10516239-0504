@@ -115,7 +115,6 @@
 </template>
 
 <script>
-import admin from "../assets/admin.json";
 import axios from "axios";
 export default {
   data() {
@@ -140,9 +139,10 @@ export default {
     },
   },
   methods: {
-    getUsers() {
-      this.connectAPI();
-      this.users = admin.data.user;
+    async getUsers() {
+      const res = await this.connectAPI();
+      const { user } = res;
+      this.users = user;
     },
     handleGender(type) {
       if (type === "M") return "男";
@@ -156,7 +156,7 @@ export default {
     // 透過非同步async/await等待API回傳
     async connectAPI() {
       const res = await axios.get(
-        "https://api-takming.herokuapp.com/api/v1/connect",
+        "https://api-takming.herokuapp.com/api/v1/user",
         {
           headers: {
             SID: "D10516239",
@@ -164,9 +164,8 @@ export default {
           },
         }
       );
-      console.log({ res }); // 接收回傳資料
-      const { data } = res;
-      console.log({ data }); // response資料會在res.data中
+      const { data } = res; // 回傳資料會在res.data中
+      return data.data; //從data取出data(裡面有user資料)
     },
   },
 };
