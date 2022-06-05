@@ -132,7 +132,6 @@ export default {
       return Math.ceil(this.users.length / 9);
     },
     currentUsers() {
-      if (!this.users.length) return [];
       const begin = (this.page - 1) * 9;
       const end = begin + 9;
       return this.users.slice(begin, end);
