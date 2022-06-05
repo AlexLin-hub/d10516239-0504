@@ -156,8 +156,8 @@ export default {
     async connectAPI() {
       return await fetch("https://api-takming.herokuapp.com/api/v1/user", {
         headers: {
-          SID: "D10516239",
-          CID: "UXpJd01qSXdOVEk1TURFPQ==",
+          SID: "你的SID",
+          CID: "課程CID",
         },
       })
         .then((res) => {
