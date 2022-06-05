@@ -115,7 +115,6 @@
 </template>
 
 <script>
-import admin from "../assets/admin.json";
 export default {
   data() {
     return {
@@ -133,6 +132,7 @@ export default {
       return Math.ceil(this.users.length / 9);
     },
     currentUsers() {
+      if (!this.users.length) return [];
       const begin = (this.page - 1) * 9;
       const end = begin + 9;
       return this.users.slice(begin, end);
@@ -140,8 +140,9 @@ export default {
   },
   methods: {
     getUsers() {
-      this.connectAPI();
-      this.users = admin.data.user;
+      this.connectAPI().then((res) => {
+        this.users = res.user.slice(0);
+      });
     },
     handleGender(type) {
       if (type === "M") return "男";
@@ -152,8 +153,8 @@ export default {
       Object.assign(this.currentUser, user);
       this.dialog = true;
     },
-    connectAPI() {
-      fetch("https://api-takming.herokuapp.com/api/v1/connect", {
+    async connectAPI() {
+      return await fetch("https://api-takming.herokuapp.com/api/v1/user", {
         headers: {
           SID: "D10516239",
           CID: "UXpJd01qSXdOVEk1TURFPQ==",
@@ -163,7 +164,8 @@ export default {
           return res.json(); //將回傳資料利用json解析
         })
         .then((json) => {
-          console.log({ json }); //將解析完的json顯示出來
+          console.log({ json: json.data }); //將解析完的json顯示出來
+          return json.data;
         })
         .catch((error) => {
           console.log({ error });
