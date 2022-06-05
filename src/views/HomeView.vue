@@ -169,7 +169,7 @@ export default {
         const { data } = res;
         console.log({ data }); // response資料會在res.data中
       } catch (error) {
-        console.log(error);
+        console.log({ error });
       }
     },
   },
