@@ -152,8 +152,9 @@ export default {
       Object.assign(this.currentUser, user);
       this.dialog = true;
     },
-    connectAPI() {
-      fetch("https://api-takming.herokuapp.com/api/v1/connect", {
+    // 透過非同步async/await等待API回傳
+    async connectAPI() {
+      await fetch("https://api-takming.herokuapp.com/api/v1/connect", {
         headers: {
           SID: "D10516239",
           CID: "UXpJd01qSXdOVEk1TURFPQ==",
