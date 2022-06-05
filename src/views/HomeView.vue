@@ -160,8 +160,8 @@ export default {
           "https://api-takming.herokuapp.com/api/v1/connect",
           {
             headers: {
-              SID: "D10516239",
-              CID: "UXpJd01qSXdOVEk1TURFPQ==",
+              SID: "你的SID",
+              CID: "課程的SID",
             },
           }
         );
