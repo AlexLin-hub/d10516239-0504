@@ -153,6 +153,7 @@ export default {
       Object.assign(this.currentUser, user);
       this.dialog = true;
     },
+    // 透過非同步async/await等待API回傳
     async connectAPI() {
       return await fetch("https://api-takming.herokuapp.com/api/v1/user", {
         headers: {
