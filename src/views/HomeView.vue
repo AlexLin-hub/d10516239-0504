@@ -161,7 +161,7 @@ export default {
           {
             headers: {
               SID: "你的SID",
-              CID: "課程的SID",
+              CID: "課程CID",
             },
           }
         );
